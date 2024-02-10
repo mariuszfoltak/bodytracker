@@ -19,9 +19,16 @@ class WeightEntryController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(Request $request)
     {
-        //
+        $weightEntries = new WeightEntries;
+        $weightEntries->value = $request->weight;
+        $weightEntries->register_date = $request->register_date;
+        $weightEntries->user = 'Mario';
+        $weightEntries->save();
+        return response()->json([
+            "message" => "Weight entry added",
+        ], 201);
     }
 
     /**
